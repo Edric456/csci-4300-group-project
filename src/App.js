@@ -11,13 +11,28 @@ import EditRoutine from './componets/EditRoutine';
 import { useState } from 'react';
 
 function App() {
+
   const [logged, setLogged] = useState(true); //State to keep track of whether user is logged in. This will later be replaced with proper authentication. 
+  const [users, setUsers] = useState([{id: Date.now() - 10,
+                                        email: "anniedison90@gmail.com",
+                                      password: "sfjgjgtltjgu789fh",
+                                    name: "Annie Edison",
+                                  date: Date(),
+                                workouts: 0},
+                                {id: Date.now() - 80,
+                                email: "coolabedfilms@gmail.com",
+                              password: "tthysshf$35^hg8",
+                            name: "Abed Nadir",
+                          date: Date(),
+                        workouts: 0}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
+
+    const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
 
   return (
     <Router>
       <div>
         <Routes>
-          <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged}/>} />
+          <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
           <Route exact path='/history' element={<History/>} />
           <Route exact path='/excercises' element={<ExcerciseList/>} />
           <Route exact path='/login' element={<Login/>} />

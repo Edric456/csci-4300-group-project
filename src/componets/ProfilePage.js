@@ -11,16 +11,18 @@ function ProfilePage (props) {
         props.setLogged(false);
     }
 
+
+
     var finalProfilePage =  
     
     <Card className="profile"><h1>Profile</h1>
-    Name: TestName
+    Name: {props.user.name}
     <br></br>
-    Email: testemail@gmail.com
+    Email: {props.user.email}
     <br></br>
-    Date Joined: ??/??/????
+    Date Joined: {props.user.date}
     <br></br>
-    Workouts Created: 2
+    Workouts Created: {props.user.workouts}
     <br></br>
     <center><Button className="logout" onClick={logOutHandler}>Log Out</Button></center>
     </Card>;

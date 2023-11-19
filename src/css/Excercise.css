@@ -1,0 +1,64 @@
+.full-excercise {
+    display: inline-grid;
+    margin-left: 50px;
+    margin-right: 50px;
+    grid-template-columns: 200px 200px 200px 420px 70px 90px;
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.full-excercise h2 {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+.body-part {
+    background-color: #BA9494;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+.equipment {
+    background-color: #EABDBD;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+.excercise {
+    background-color: #AEA3A3;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+.edit {
+    background-color: #D9D9D9;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.delete {
+    background-color: #C8C8C8;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    align-content: center;
+}
+
+.edit-button {
+    background-color: #818ADA;
+}
+
+.delete-button {
+    background-color: #DC7A7A;
+}
+
+.image {
+    background-color: #84DC76;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+img {
+    width: 300px;
+}

@@ -4,12 +4,15 @@ import Button from './Button';
 import '../css/ProfilePage.css';
 import { Link } from 'react-router-dom';
 
+
 function ProfilePage (props) {
 
     //Handler for whenever the user decides to logout.
+    
     const logOutHandler = (event) => {
         props.setLogged(false);
     }
+    
 
 
 
@@ -27,7 +30,7 @@ function ProfilePage (props) {
     <center><Button className="logout" onClick={logOutHandler}>Log Out</Button></center>
     </Card>;
 
-    if (props.logged == false) {
+    if (props.logged === false) {
         finalProfilePage = <Card className="profile"><h1>Profile</h1>
         <div className="notlogged">You are not logged in. Click below to either login or signup.</div>
         <br></br>

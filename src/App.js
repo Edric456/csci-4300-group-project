@@ -9,6 +9,7 @@ import SignUp from './componets/SignUp';
 import CreateRoutine from './componets/CreateRoutine';
 import EditRoutine from './componets/EditRoutine';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
@@ -27,6 +28,24 @@ function App() {
                         workouts: 0}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
 
     const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
+  
+
+    useEffect(() => {
+      const data = window.localStorage.getItem('logged')
+      console.log("Look" + data)
+
+      if (data !== null) {
+        setLogged(JSON.parse(data))
+      }
+    }, [])
+
+    useEffect(() => {
+      window.localStorage.setItem('logged', JSON.stringify(logged));
+      console.log(window.localStorage.getItem('logged'))
+    }, [logged]);
+
+
+
 
   return (
     <Router>

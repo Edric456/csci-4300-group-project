@@ -29,7 +29,7 @@ function App() {
 
     const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
   
-
+    //Ignore for now
     useEffect(() => {
       const data = window.localStorage.getItem('logged')
       console.log("Look" + data)
@@ -43,6 +43,7 @@ function App() {
       window.localStorage.setItem('logged', JSON.stringify(logged));
       console.log(window.localStorage.getItem('logged'))
     }, [logged]);
+    //Ignore for now 
 
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './Header';
 
-function CreateRoutine () {
+function CreateExcercise () {
     return (
         <div><Header></Header></div>
     )
 }
 
-export default CreateRoutine;
+export default CreateExcercise;

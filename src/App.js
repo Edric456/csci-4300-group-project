@@ -10,6 +10,8 @@ import CreateRoutine from './componets/CreateRoutine';
 import EditRoutine from './componets/EditRoutine';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import CreateExcercise from './componets/CreateExcercise';
+import EditExcercise from './componets/EditExcercise';
 
 function App() {
 
@@ -59,6 +61,8 @@ function App() {
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine/>} />
           <Route exact path='/history/edit-routine/:id' element={<EditRoutine/>} />
+          <Route exact path='excercises/create-excercise' element={<CreateExcercise/>} />
+          <Route exact path='excercises/edit-excercise:id' element={<EditExcercise/>} />
         </Routes>
       </div>
     </Router>

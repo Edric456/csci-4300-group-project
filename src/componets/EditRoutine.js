@@ -1,8 +1,9 @@
 import React from 'react';
+import Header from './Header';
 
 function EditRoutine () {
     return (
-        <div></div>
+        <div><Header></Header></div>
     )
 }
 

@@ -27,7 +27,7 @@ function ProfilePage (props) {
     <br></br>
     Date Joined: {props.user.date}
     <br></br>
-    Workouts Created: {props.user.workouts}
+    Workouts Created: {props.user.workouts.length}
     <br></br>
     <center><Button className="logout" onClick={logOutHandler}>Log Out</Button></center>
     </Card>;

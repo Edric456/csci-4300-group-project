@@ -21,16 +21,31 @@ function App() {
                                       password: "sfjgjgtltjgu789fh",
                                     name: "Annie Edison",
                                   date: Date(),
-                                workouts: 0},
+                                workouts: []},
                                 {id: Date.now() - 80,
                                 email: "coolabedfilms@gmail.com",
                               password: "tthysshf$35^hg8",
                             name: "Abed Nadir",
                           date: Date(),
-                        workouts: 0}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
+                        workouts: []}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
 
     const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
-  
+    
+    const [excercises, setExcercises] = useState([{id: Date.now() + 100,
+                                                  title: "Pushups",
+                                                  bodyPart: "Triceps, Chest",
+                                                  equipment: "Bodyweight",
+                                                  image: "https://www.athletico.com/wp-content/uploads/2020/04/stay-home-fitness-challenge-featured.jpg"},
+                                                  {id: Date.now() - 9000,
+                                                    title: "Bicep Curls",
+                                                    bodyPart: "Biceps",
+                                                    equipment: "Barbells",
+                                                    image: "https://experiencelife.lifetime.life/wp-content/uploads/2021/02/Bicep-Curls.jpg"},
+                                                  {id: Date.now() + 800,
+                                                    title: "Bench Press",
+                                                    bodyPart: "Chest",
+                                                    equipment: "Barbell, Bench",
+                                                    image: "https://blog.nasm.org/hubfs/bench-press-elbow-pain.jpg"}])
     //Ignore for now
     useEffect(() => {
       const data = window.localStorage.getItem('logged')
@@ -56,7 +71,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
           <Route exact path='/history' element={<History/>} />
-          <Route exact path='/excercises' element={<ExcerciseList/>} />
+          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises}/>} />
           <Route exact path='/login' element={<Login/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine/>} />

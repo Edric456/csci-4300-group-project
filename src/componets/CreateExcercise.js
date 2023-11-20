@@ -5,12 +5,20 @@ import AddExerciseForm from './AddExerciseForm';
 
 
 function CreateExcercise (props) {
-    return (
-        <div>
-        <Header>
+    var finalCreateForm = <div>
+    <Header>
+    </Header>
+    <AddExerciseForm onAddExcercise={props.onAddExcercise}></AddExerciseForm>
+    </div>
+
+    if (props.logged === false) {
+        finalCreateForm = <div><Header>
         </Header>
-        <AddExerciseForm onAddExcercise={props.onAddExcercise}></AddExerciseForm>
+        <b><center>You are not an authenticated user and thus do not have access to this form.</center></b>
         </div>
+    }
+    return (
+       finalCreateForm 
     )
 }
 

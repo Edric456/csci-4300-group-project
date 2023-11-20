@@ -4,7 +4,7 @@ import Card from './Card';
 import Button from './Button';
 import '../css/EditExercise_form.css';
 
-const EditExercise_form = props => {
+const EditExerciseForm = props => {
     const[enteredBodyPart,setEnteredBodyPart] = useState('')
     const[enteredEquipment,setEnteredEquipment] = useState('')
     const[enteredExercise,setEnteredExercise] = useState('')
@@ -14,18 +14,34 @@ const EditExercise_form = props => {
       event.preventDefault();
     
       const newEditExercise ={
-        id: Math.random().toString,
-        bodypart: enteredBodyPart,
+        id: props.id,
+        title: enteredExercise,
+        bodyPart: enteredBodyPart,
         equipment: enteredEquipment,
-        exercise: enteredExercise,
-        img: enteredImage
+        image: enteredImage
       };
       setEnteredBodyPart('');
       setEnteredEquipment('');
       setEnteredExercise('');
       setEnteredImage('');
 
-      props.onAddEditExercise(newEditExercise);
+      
+
+      const excerciseHandler = (() => {
+        enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ?
+        props.onAddEditExercise((newList) => newList.map((item) => props.id === item.id ? item = newEditExercise : item = item))
+        : props.onAddEditExercise((newList) => newList)
+    });
+
+    const alertHandler = (() => {
+      enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ? alert("Excercise modified successfully.")
+      : alert("Excercise not modified. Check that you entered some sort of value for Body Part, Excercise, and Equipment.")
+    })
+
+    excerciseHandler();
+    alertHandler();
+
+
     
     }
       return (
@@ -59,11 +75,11 @@ const EditExercise_form = props => {
               value ={enteredImage}
               onChange = {(e)=>{setEnteredImage(e.target.value)}}
             />
-            <Button type="submit">Confirm Edit</Button>
+            <Button type="submit" className="submit-button">Confirm Edit</Button>
           </form>
         </Card>
       );
     };
     
-    export default EditExercise_form;
+    export default EditExerciseForm;
     

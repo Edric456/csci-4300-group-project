@@ -46,6 +46,9 @@ function App() {
                                                     bodyPart: "Chest",
                                                     equipment: "Barbell, Bench",
                                                     image: "https://blog.nasm.org/hubfs/bench-press-elbow-pain.jpg"}])
+
+    const [editExcerciseId, setEditExcerciseID] = useState(0); //Keeps track of the excercise item to be edited.
+    const [editRoutineID, setEditRoutineID] = useState(0);
     //Ignore for now
     useEffect(() => {
       const data = window.localStorage.getItem('logged')
@@ -71,13 +74,13 @@ function App() {
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
           <Route exact path='/history' element={<History/>} />
-          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged}/>} />
+          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
           <Route exact path='/login' element={<Login/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine/>} />
           <Route exact path='/history/edit-routine/:id' element={<EditRoutine/>} />
           <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcercises} logged={logged}/>} />
-          <Route exact path='excercises/edit-excercise:id' element={<EditExcercise/>} />
+          <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcercises} logged={logged} id={editExcerciseId}/>} />
         </Routes>
       </div>
     </Router>

@@ -24,3 +24,12 @@ label {
   outline: none;
   border-color: #4f005f;
 }
+
+.submit-button {
+  background-color: #818ADA;
+}
+
+.submit-button:active,
+.submit-button:hover{
+  background-color: #abb0d7;
+}

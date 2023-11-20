@@ -14,7 +14,7 @@ const AddExerciseForm = props => {
       event.preventDefault();
     
       const newExercise ={
-        id: Math.random().toString,
+        id: Math.random(),
         title: enteredExercise,
         bodyPart: enteredBodyPart,
         equipment: enteredEquipment,

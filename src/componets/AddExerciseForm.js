@@ -4,7 +4,7 @@ import Card from './Card';
 import Button from './Button';
 import '../css/AddExercise_form.css';
 
-const AddExercise_form = props => {
+const AddExerciseForm = props => {
     const[enteredBodyPart,setEnteredBodyPart] = useState('')
     const[enteredEquipment,setEnteredEquipment] = useState('')
     const[enteredExercise,setEnteredExercise] = useState('')
@@ -15,17 +15,28 @@ const AddExercise_form = props => {
     
       const newExercise ={
         id: Math.random().toString,
-        bodypart: enteredBodyPart,
+        title: enteredExercise,
+        bodyPart: enteredBodyPart,
         equipment: enteredEquipment,
-        exercise: enteredExercise,
-        img: enteredImage
+        image: enteredImage
       };
       setEnteredBodyPart('');
       setEnteredEquipment('');
       setEnteredExercise('');
       setEnteredImage('');
 
-      props.onAddExercise(newExercise);
+      const excerciseHandler = (() => {
+        enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ? props.onAddExcercise(newList => newList.concat([newExercise])) 
+        : props.onAddExcercise(newList => newList)
+      });
+
+      const alertHandler = (() => {
+        enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ? alert("Excercise added successfully.")
+        : alert("Excercise not added. Check that you entered some sort of value for Body Part, Excercise, and Equipment.")
+      })
+
+      excerciseHandler();
+      alertHandler();
     
     }
       return (
@@ -59,11 +70,11 @@ const AddExercise_form = props => {
               value ={enteredImage}
               onChange = {(e)=>{setEnteredImage(e.target.value)}}
             />
-            <Button type="submit">Add New Exercise</Button>
+            <Button type="submit" className="submit-button">Add New Exercise</Button>
           </form>
         </Card>
       );
     };
     
-    export default AddExercise_form;
+    export default AddExerciseForm;
     

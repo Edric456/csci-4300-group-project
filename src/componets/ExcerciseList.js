@@ -14,7 +14,7 @@ function ExcerciseList (props) {
            (<div>
             <Excercise body={excercise.bodyPart} equipment={excercise.equipment} excercise={excercise.title} image={excercise.image}></Excercise>
            </div>))}
-           <Button className="add">Add New Excercise</Button>
+           <Link to="../excercises/create-excercise"><Button className="add">Add New Excercise</Button></Link>
         </div>
     )
 }

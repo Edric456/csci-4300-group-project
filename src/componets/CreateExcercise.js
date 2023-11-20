@@ -1,9 +1,16 @@
 import React from 'react';
 import Header from './Header';
+import AddExerciseForm from './AddExerciseForm';
 
-function CreateExcercise () {
+
+
+function CreateExcercise (props) {
     return (
-        <div><Header></Header></div>
+        <div>
+        <Header>
+        </Header>
+        <AddExerciseForm onAddExcercise={props.onAddExcercise}></AddExerciseForm>
+        </div>
     )
 }
 

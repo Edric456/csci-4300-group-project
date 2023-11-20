@@ -13,7 +13,7 @@ const AddWorkout_form = props => {
       event.preventDefault();
     
       const newWorkout ={
-        id: Math.random().toString,
+        id: Math.random(),
         exercise: enteredExercise,
         sets: enteredReps,
         reps: enteredReps

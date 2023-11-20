@@ -27,3 +27,8 @@
 .main-button:active {
     background-color: gray;
 }
+
+.top-menu img {
+    width: 40px;
+    align-content: center;
+}

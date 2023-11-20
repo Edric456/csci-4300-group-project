@@ -71,7 +71,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
           <Route exact path='/history' element={<History/>} />
-          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises}/>} />
+          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged}/>} />
           <Route exact path='/login' element={<Login/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine/>} />

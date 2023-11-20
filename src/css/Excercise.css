@@ -53,6 +53,16 @@
     background-color: #DC7A7A;
 }
 
+.edit-button:active,
+.edit-button:hover {
+    background-color: #abb0d7;
+}
+
+.delete-button:active,
+.delete-button:hover {
+    background-color: #d9a1a1;
+}
+
 .image {
     background-color: #84DC76;
     padding-top: 10px;

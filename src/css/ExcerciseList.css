@@ -8,3 +8,21 @@ h1 {
     margin-left: 50px;
     color: black;
 }
+
+.add:hover,
+.add:active {
+    background-color: rgb(213, 255, 151);
+}
+
+.not-logged {
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+}
+
+.two-buttons {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

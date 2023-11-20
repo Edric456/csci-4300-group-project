@@ -30,3 +30,8 @@ label {
   color: black;
   background-color: greenyellow;
 }
+
+.submit-button:active,
+.submit-button:hover{
+  background-color: rgb(213, 255, 151);
+}

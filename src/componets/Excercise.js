@@ -16,6 +16,13 @@ function Excercise (props) {
         innerIDHandler();
     }
 
+    const deleteIdHandler = (event) => {
+        function notItem (item) {
+            return item !== props.item
+        }
+        props.onAddExcercise((newList) => newList.filter(notItem))
+    }
+
 
 
     var finalExcercise =  
@@ -25,7 +32,7 @@ function Excercise (props) {
     <div className="excercise"><h2>Excercise</h2>{props.excercise}</div>
     <div className="image"><h2>Image</h2><img src={props.image} alt={props.excercise}></img></div>
     <div className="edit"><Link to={editLink} onClick={editIDHandler}><Button className="edit-button">Edit</Button></Link></div>
-    <div className="delete"><Button className="delete-button">Delete</Button></div>
+    <div className="delete"><Button className="delete-button" onClick={deleteIdHandler}>Delete</Button></div>
     </div>
 
     if (props.logged === false) {

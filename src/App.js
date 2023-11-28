@@ -107,7 +107,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
-          <Route exact path='/history' element={<History user={currUser} logged={logged} onAddRoutine={setRoutines}/>} />
+          <Route exact path='/history' element={<History user={currUser} logged={logged} onAddRoutine={setRoutines} listRoutines={routines}/>} />
           <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
           <Route exact path='/login' element={<Login/>} />
           <Route exact path='/signup' element={<SignUp/>} />

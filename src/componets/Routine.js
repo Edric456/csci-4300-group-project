@@ -19,17 +19,21 @@ function Routine (props) {
         function notItem (item) {
             return item !== props.item
         }
-        props.onAddRoutine((newList) => newList.filter(notItem))
+
+        const newList = props.listRoutines.filter(notItem)
+
+        props.onAddRoutine(newList)
+        console.log(props.listRoutines)
     }
 
 
 
     return (
-        <Card className="routine"><h1>{props.name} - Created {props.date}</h1>
+        <Card className="routine"><h1>{props.item.title} - Created {props.item.date}</h1>
         <h2>Excercises</h2>
         <ul>
             
-            {props.excercises.map((excercise) => 
+            {props.item.excercises.map((excercise) => 
                 (<li>{excercise.name}<div className="reps">{excercise.sets} 
                 {excercise.sets === 1 ? " set" : " sets"}, {excercise.reps}
                 {excercise.reps === 1 ? " rep" : " reps"}</div></li>)

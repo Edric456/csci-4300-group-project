@@ -45,3 +45,7 @@ h1 {
 .getlogged:active {
     background-color: rgb(100, 100, 255);
 }
+
+.line {
+    margin-bottom: 5px;
+}

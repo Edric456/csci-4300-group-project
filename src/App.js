@@ -15,19 +15,51 @@ import EditExcercise from './componets/EditExcercise';
 
 function App() {
 
+  const testDate = new Date(Date.now())
+  const testDateTwo = String((testDate.getMonth() + 1)) + "/" + String((testDate.getDate())) + "/" + String(testDate.getFullYear())
+  
+  var testWorkouts = [{id: 0,
+                        title: "Test Workout",
+                      date: testDateTwo,
+                    excercises: [{name: "Bicep Curls",
+                                  sets: 2,
+                                  reps: 10}, 
+                                  {name: "Bench Press",
+                                    sets: 1,
+                                    reps: 25},
+                                  {name: "Pushups",
+                                    sets: 6,
+                                    reps: 5}]},
+                        {id: 1,
+                          title: "Another Test Workout",
+                        date: testDateTwo,
+                      excercises: [{name: "Pushups",
+                                    sets: 10,
+                                    reps: 10},
+                                    {name: "Bench Press",
+                                      sets: 2,
+                                      reps: 15}]},
+                        {id: 2,
+                          title: "Yet Another Test Workout",
+                        date: testDateTwo,
+                      excercises: [{name: "Bicep Curls",
+                                    sets: 3,
+                                  reps: 20}]}]
+
+
   const [logged, setLogged] = useState(true); //State to keep track of whether user is logged in. This will later be replaced with proper authentication. 
   const [users, setUsers] = useState([{id: Date.now() - 10,
                                         email: "anniedison90@gmail.com",
                                       password: "sfjgjgtltjgu789fh",
                                     name: "Annie Edison",
                                   date: Date(),
-                                workouts: []},
+                                workouts: testWorkouts},
                                 {id: Date.now() - 80,
                                 email: "coolabedfilms@gmail.com",
                               password: "tthysshf$35^hg8",
                             name: "Abed Nadir",
                           date: Date(),
-                        workouts: []}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
+                        workouts: testWorkouts}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
 
     const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
     
@@ -49,6 +81,8 @@ function App() {
 
     const [editExcerciseId, setEditExcerciseID] = useState(0); //Keeps track of the excercise item to be edited.
     const [editRoutineID, setEditRoutineID] = useState(0);
+
+    const [routines, setRoutines] = useState(currUser.workouts)
     //Ignore for now
     useEffect(() => {
       const data = window.localStorage.getItem('logged')
@@ -73,12 +107,12 @@ function App() {
       <div>
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser}/>} />
-          <Route exact path='/history' element={<History/>} />
+          <Route exact path='/history' element={<History user={currUser} logged={logged} onAddRoutine={setRoutines}/>} />
           <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
           <Route exact path='/login' element={<Login/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine/>} />
-          <Route exact path='/history/edit-routine/:id' element={<EditRoutine/>} />
+          <Route exact path='/history/edit-routine' element={<EditRoutine/>} />
           <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcercises} logged={logged}/>} />
           <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcercises} logged={logged} id={editExcerciseId}/>} />
         </Routes>

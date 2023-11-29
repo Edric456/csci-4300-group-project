@@ -8,7 +8,7 @@ function CreateExcercise (props) {
     var finalCreateForm = <div>
     <Header>
     </Header>
-    <AddExerciseForm onAddExcercise={props.onAddExcercise}></AddExerciseForm>
+    <AddExerciseForm onAddExcercise={props.onAddExcercise} ></AddExerciseForm>
     </div>
 
     if (props.logged === false) {

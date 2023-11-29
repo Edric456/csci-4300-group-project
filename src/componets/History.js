@@ -7,7 +7,7 @@ import '../css/History.css'
 
 function History (props) {
     var finalWorkouts = <div><Header></Header>{props.listRoutines.map((workout) => 
-        (<Routine name={workout.title} date={workout.date} excercises={workout.excercises} item={workout} onAddRoutine={props.onAddRoutine} listRoutines={props.listRoutines}></Routine>))}
+        (<Routine id={workout.id} name={workout.title} date={workout.date} excercises={workout.excercises} item={workout} onAddRoutine={props.onAddRoutine} listRoutines={props.listRoutines} editID={props.editID}></Routine>))}
         <br/>
         <br/>
         <center><Link to="../history/create-routine"><Button className="adds">Add Workout</Button></Link></center>

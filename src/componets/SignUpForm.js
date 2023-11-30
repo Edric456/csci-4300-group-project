@@ -4,7 +4,7 @@ import Card from './Card';
 import Button from './Button';
 import '../css/SignUp_form.css';
 
-const SignUp_form = props => {
+const SignUpForm = props => {
     const[enteredEmailAddress,setEnteredEmailAddress] = useState('')
     const[enteredUsername,setEnteredUsername] = useState('')
     const[enteredPassword,setEnteredPassword] = useState('')
@@ -55,5 +55,5 @@ const SignUp_form = props => {
       );
     };
     
-    export default SignUp_form;
+    export default SignUpForm;
     

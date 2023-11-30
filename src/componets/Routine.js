@@ -41,7 +41,7 @@ function Routine (props) {
                 
         </ul>
         <div><center>
-        <Link to="../history/edit-routine" onClick={editIDHandler}><Button className="modify">Modify</Button></Link>
+        {/*<Link to="../history/edit-routine" onClick={editIDHandler}><Button className="modify">Modify</Button></Link></div>*/}
         <Button className="del" onClick={deleteIdHandler}>Delete</Button>
         </center></div>
         </Card>

@@ -23,11 +23,12 @@ function ProfilePage (props) {
     <Header></Header>
     <Card className="profile"><h1>Profile</h1>
     <div className="line">
-    Name: {props.user.name}
-    </div>
-    <div className="line">Email: {props.user.email}</div>
-    <div className="line">Date Joined: {props.user.date}</div>
-    <div className="line">Workouts Created: {props.routines.length}</div>
+    <h6>Name:</h6> {props.user.name}</div>
+    <div className="line"><h6>Email:</h6> {props.user.email}</div>
+    <div className="line"><h6>Date Joined:</h6> {props.user.date}   </div>
+    <div className="line">
+    <h6>Workouts Created:</h6> {props.routines.length}</div>
+    <br/>
     <br></br>
     <center><Button className="logout" onClick={logOutHandler}>Log Out</Button></center>
     </Card>;

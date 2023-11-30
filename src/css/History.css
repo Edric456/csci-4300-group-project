@@ -2,8 +2,7 @@
     background-color: #05FA58;
     margin-bottom: 10px;
     text-align: center;
-    padding-left: 275px;
-    padding-right: 275px;
+   min-width: 600px;
 }
 
 .adds:active,

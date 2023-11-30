@@ -43,8 +43,7 @@ function Excercise (props) {
         <div className="equipment"><h2>Equipment</h2><div className="innerFormat">{props.equipment}</div></div>
         <div className="excercise"><h2>Excercise</h2><div className="innerFormat">{props.excercise}</div></div>
         <div className="image"><h2>Image</h2><img src={props.image} alt={props.excercise}></img></div>
-        <div className="edit">Login or Register to Edit</div>
-        <div className="delete">Login or Register to Delete</div>
+        <div className="actions"><center>Login or Register to Edit</center></div>
         </div>
     }
     

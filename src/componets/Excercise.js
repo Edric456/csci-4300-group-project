@@ -27,19 +27,21 @@ function Excercise (props) {
 
     var finalExcercise =  
     <div className="full-excercise">
-    <div className="body-part"><h2>Body Part</h2>{props.body}</div>
-    <div className="equipment"><h2>Equipment</h2>{props.equipment}</div>
-    <div className="excercise"><h2>Excercise</h2>{props.excercise}</div>
+    <div className="body-part"><h2>Body Part</h2><div className="innerFormat">{props.body}</div></div>
+    <div className="equipment"><h2>Equipment</h2><div className="innerFormat">{props.equipment}</div></div>
+    <div className="excercise"><h2>Excercise</h2><div className="innerFormat">{props.excercise}</div></div>
     <div className="image"><h2>Image</h2><img src={props.image} alt={props.excercise}></img></div>
-    <div className="edit"><Link to={editLink} onClick={editIDHandler}><Button className="edit-button">Edit</Button></Link></div>
-    <div className="delete"><Button className="delete-button" onClick={deleteIdHandler}>Delete</Button></div>
+    <div className="actions">
+                <Link to={editLink} onClick={editIDHandler}><Button className="edit-button">Edit</Button></Link>
+                <Button className="delete-button" onClick={deleteIdHandler}>Delete</Button>
+            </div>
     </div>
 
     if (props.logged === false) {
         finalExcercise = <div className="full-excercise">
-        <div className="body-part"><h2>Body Part</h2>{props.body}</div>
-        <div className="equipment"><h2>Equipment</h2>{props.equipment}</div>
-        <div className="excercise"><h2>Excercise</h2>{props.excercise}</div>
+        <div className="body-part"><h2>Body Part</h2><div className="innerFormat">{props.body}</div></div>
+        <div className="equipment"><h2>Equipment</h2><div className="innerFormat">{props.equipment}</div></div>
+        <div className="excercise"><h2>Excercise</h2><div className="innerFormat">{props.excercise}</div></div>
         <div className="image"><h2>Image</h2><img src={props.image} alt={props.excercise}></img></div>
         <div className="edit">Login or Register to Edit</div>
         <div className="delete">Login or Register to Delete</div>

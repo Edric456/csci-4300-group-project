@@ -1,6 +1,12 @@
 h1 {
-    font-weight: bold;
+    -webkit-background-clip: text;
+    color: black; /* Set text color to black */
+    font-size: 50px;
     text-align: center;
+    font-weight: bold;
+    -webkit-text-stroke: .5px rgba(0, 0, 0, 0.5); /* Darker outline for better visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Emphasizing shadow */
+
 }
 
 .add {

@@ -31,4 +31,6 @@
 .top-menu img {
     width: 40px;
     align-content: center;
+    border-width: 0px;
+    box-shadow: none;
 }

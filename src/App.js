@@ -46,6 +46,16 @@ function App() {
                                     sets: 3,
                                   reps: 20}]}]
 
+          var bestWorkouts = [{id: 0,
+            title: "Test Workout",
+          date: testDateTwo,
+        excercises: [{name: "Bicep Curls",
+                      sets: 2,
+                      reps: 10}, 
+                      {name: "Bench Press",
+                        sets: 1,
+                        reps: 25}]}]
+
 
   const [logged, setLogged] = useState(true); //State to keep track of whether user is logged in. This will later be replaced with proper authentication. 
   const [users, setUsers] = useState([{id: Date.now() - 10,
@@ -59,7 +69,7 @@ function App() {
                               password: "tthysshf$35^hg8",
                             name: "Abed Nadir",
                           date: Date(),
-                        workouts: testWorkouts}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
+                        workouts: bestWorkouts}]) //State to keep track of all the registerd users. This will be properly modified to work with MongoDB later. 
 
     const [currUser, setCurrUser] = useState(users[0]) //State to keep track of user currently logged in. This will be properly modified to work with MongoDB later. 
     
@@ -109,7 +119,7 @@ function App() {
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser} routines={routines} logOutUser={setCurrUser}/>} />
           <Route exact path='/history' element={<History user={currUser} logged={logged} onAddRoutine={setRoutines} listRoutines={routines} editID={setEditRoutineID}/>} />
           <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
-          <Route exact path='/login' element={<Login logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines}/>} />
+          <Route exact path='/login' element={<Login logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines} setLogged={setLogged}/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excercises} listRoutines={routines}/>} />
           <Route exact path='/history/edit-routine' element={<EditRoutine/>} />

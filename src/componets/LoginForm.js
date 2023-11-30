@@ -4,7 +4,9 @@ import Card from './Card';
 import Button from './Button';
 import '../css/Login_form.css';
 
+
 import { useNavigate } from 'react-router-dom';
+
 
 const LoginForm = props => {
     const[enteredEmailAddress,setEnteredEmailAddress] = useState('')
@@ -39,26 +41,39 @@ const LoginForm = props => {
         setEnteredPassword('')
       } else if (foundEmail === true & matchPassword === true) {
         function findUser (user) {
-          return user.email === setEnteredEmailAddress
+          return user.email === enteredEmailAddress
         }
-        console.log(props.users)
         let newUser = props.users.filter(findUser)
         let actualNewUser = newUser[0]
+
+        console.log(newUser)
+        console.log(actualNewUser)
+
+       
+
+        //promise.then(props.setRoutines(props.currUser.workouts))
         props.setUser(actualNewUser)
-        props.setRoutines(props.currUser.workouts)
+        props.setRoutines(actualNewUser.workouts)
+        
+        props.setLogged(true)
 
         setEnteredEmailAddress('');
         setEnteredPassword('');
 
         
         navigate('../')
+        
 
 
       }
 
       
+
+      
     
     }
+
+  
       return (
         <Card className="input">
           <form onSubmit ={addUserHandler}>

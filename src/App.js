@@ -106,10 +106,10 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser} routines={routines}/>} />
+          <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={currUser} routines={routines} logOutUser={setCurrUser}/>} />
           <Route exact path='/history' element={<History user={currUser} logged={logged} onAddRoutine={setRoutines} listRoutines={routines} editID={setEditRoutineID}/>} />
           <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
-          <Route exact path='/login' element={<Login/>} />
+          <Route exact path='/login' element={<Login logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines}/>} />
           <Route exact path='/signup' element={<SignUp/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excercises} listRoutines={routines}/>} />
           <Route exact path='/history/edit-routine' element={<EditRoutine/>} />

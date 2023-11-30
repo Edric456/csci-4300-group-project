@@ -12,6 +12,7 @@ function ProfilePage (props) {
     
     const logOutHandler = (event) => {
         props.setLogged(false);
+        props.logOutUser({})
     }
     
 

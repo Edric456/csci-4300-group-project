@@ -12,6 +12,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import CreateExcercise from './componets/CreateExcercise';
 import EditExcercise from './componets/EditExcercise';
+import axios from 'axios';
+import UserContext from './context/UserContext';
 
 function App() {
 
@@ -93,26 +95,47 @@ function App() {
     const [editRoutineID, setEditRoutineID] = useState(0);
 
     const [routines, setRoutines] = useState(currUser.workouts)
-    //Ignore for now
-    useEffect(() => {
-      const data = window.localStorage.getItem('logged')
-      console.log("Look" + data)
+    
 
-      if (data !== null) {
-        setLogged(JSON.parse(data))
-      }
-    }, [])
 
-    useEffect(() => {
-      window.localStorage.setItem('logged', JSON.stringify(logged));
-      console.log(window.localStorage.getItem('logged'))
-    }, [logged]);
-    //Ignore for now 
+    const [userData, setUserData] = useState({
+        token: undefined,
+        user: undefined,
+    })
+
+    useEffect(()=> {
+      const checkLoggedIn = async () => {
+        let token = localStorage.getItem("auth-token");
+        if (token === null) {
+          localStorage.setItem("auth-token", "")
+          token = "";
+        }
+
+        const tokenResponse = await axios.post(
+          "http://localhost:4000/api/users/tokenIsValid",
+          null,
+          { headers: { "x-auth-token": token } }
+        );
+        
+        if (tokenResponse.data) {
+          const userRes = await axios.get("http://localhost:4000/api/users", {
+            headers: { "x-auth-token": token },
+          });
+
+          setUserData({
+            token,
+            user: userRes.data,
+          });
+        }
+      };
+      checkLoggedIn();
+    }, []);
 
 
 
 
   return (
+    <UserContext.Provider value={{ userData, setUserData }}>
     <Router>
       <div>
         <Routes>
@@ -128,6 +151,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </UserContext.Provider>
   );
 }
 

@@ -2,9 +2,18 @@ import React from "react";
 import '../css/Excercise.css'
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 function Excercise (props) {
+
+    const [token, setToken] = useState();
+
+    useEffect(() => {
+        setToken(localStorage.getItem("auth-token"));
+    }, []);
+
     const editLink = "../excercises/edit-excercise"
     
     const editIDHandler = (event) => {
@@ -37,7 +46,7 @@ function Excercise (props) {
             </div>
     </div>
 
-    if (props.logged === false) {
+    if (!token) {
         finalExcercise = <div className="full-excercise">
         <div className="body-part"><h2>Body Part</h2><div className="innerFormat">{props.body}</div></div>
         <div className="equipment"><h2>Equipment</h2><div className="innerFormat">{props.equipment}</div></div>

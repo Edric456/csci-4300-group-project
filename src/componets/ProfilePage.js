@@ -4,15 +4,24 @@ import Button from './Button';
 import Header from './Header';
 import '../css/ProfilePage.css';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 function ProfilePage (props) {
+
+    const [token, setToken] = useState();
+
+    useEffect(() => {
+        setToken(localStorage.getItem("auth-token"));
+    }, []);
 
     //Handler for whenever the user decides to logout.
     
     const logOutHandler = (event) => {
         props.setLogged(false);
         props.logOutUser({})
+        setToken()
     }
     
 
@@ -34,7 +43,7 @@ function ProfilePage (props) {
     </Card>;
     </div>
 
-    if (props.logged === false) {
+    if (!token) {
         finalProfilePage = <div>
         <Header></Header>
         <Card className="profile"><h1>Profile</h1>

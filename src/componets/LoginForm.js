@@ -7,64 +7,57 @@ import '../css/Login_form.css';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useContext } from 'react';
+
+import axios from 'axios';
+
+import UserContext from '../context/UserContext';
+
 
 const LoginForm = props => {
     const[enteredEmailAddress,setEnteredEmailAddress] = useState('')
     const[enteredPassword,setEnteredPassword] = useState('')
 
+    const [error, setError] = useState();
+
+    const [loading, setLoading] = useState(false);
+
+    const { setUserData } = useContext(UserContext);
+
     const navigate = useNavigate()
     
-    const addUserHandler = event => {
+    async function addUserHandler (event) {
       event.preventDefault();
+      setLoading(true)
       
+      try {
+        let foundEmail = false
+        let matchPassword = false
 
-      let foundEmail = false
-      let matchPassword = false
+       const loginUser = {
+        email: enteredEmailAddress,
+        password: enteredPassword
+       }
 
-      for (let i = 0; i < props.userList.length; i++) {
-        if (props.userList[i].email === enteredEmailAddress) {
-          foundEmail = true
-          if (props.userList[i].password === enteredPassword) {
-            matchPassword = true
-          }
-          break;
-        }
-      }
+       const loginRes = await axios.post("http://localhost:4000/api/users/login", loginUser)
+       setUserData({
+          token: loginRes.data.token,
+          user: loginRes.data.user,
+       });
 
-      if (foundEmail === true & matchPassword === false) {
-        alert("Password does not match email associated with this account. Please try again.")
-        setEnteredEmailAddress('')
-        setEnteredPassword('')
-      } else if (foundEmail === false) {
-        alert("Cannot find account associated with this email. Please try again.")
-        setEnteredEmailAddress('')
-        setEnteredPassword('')
-      } else if (foundEmail === true & matchPassword === true) {
-        function findUser (user) {
-          return user.email === enteredEmailAddress
-        }
-        let newUser = props.users.filter(findUser)
-        let actualNewUser = newUser[0]
-
-        console.log(newUser)
-        console.log(actualNewUser)
-
-       
-
-        //promise.then(props.setRoutines(props.currUser.workouts))
-        props.setUser(actualNewUser)
-        props.setRoutines(actualNewUser.workouts)
-        
-        props.setLogged(true)
+       localStorage.setItem("auth-token", loginRes.data.token)
 
         setEnteredEmailAddress('');
         setEnteredPassword('');
 
-        
+          
         navigate('../')
         
-
-
+      } catch (err) {
+        setLoading(false)
+        err.response.data.msg && setError(err.response.data.msg);
+        console.log(err)
+        alert(error)
       }
 
       

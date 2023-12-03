@@ -4,7 +4,13 @@ import Card from './Card';
 import Button from './Button';
 import '../css/SignUp_form.css';
 
+import axios from 'axios';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useContext } from 'react';
+
+import UserContext from '../context/UserContext';
 
 const SignUpForm = props => {
     const[enteredEmailAddress,setEnteredEmailAddress] = useState('')
@@ -12,58 +18,63 @@ const SignUpForm = props => {
     const[enteredPassword,setEnteredPassword] = useState('')
     const [reenteredPassword, setReenteredPassword] = useState('')
 
+    const [error, setError] = useState("")
+
+    const [loading, setLoading] = useState(false)
+
+    const { setUserData } = useContext(UserContext)
+
     const navigate = useNavigate()
     
-    const addUserHandler = event => {
+    async function addUserHandler( event) {
       event.preventDefault();
-    
-      const newSignUp ={
-        id: Date.now(),
-        email: enteredEmailAddress,
-        password: enteredPassword,
-        name: enteredUsername,
-        date: Date(),
-        workouts: [],
-      };
+      setLoading(true)
+      
+      try{
+
+          const newUser ={
+            id: Date.now(),
+            email: enteredEmailAddress,
+            password: enteredPassword,
+            confirmPassword: reenteredPassword,
+            name: enteredUsername,
+            date: Date(),
+            workouts: [],
+          };
+
+          await axios.post("http://localhost:4000/api/users/signup", newUser)
+
+          
+
+          var emailExist = false
+
+          for (let i = 0; i < props.userList.length; i++) {
+            if (props.userList[i].email === enteredEmailAddress) {
+              emailExist = true
+              break
+            }
+          }
+
+
+          
 
       
-
-      var emailExist = false
-
-      for (let i = 0; i < props.userList.length; i++) {
-        if (props.userList[i].email === enteredEmailAddress) {
-          emailExist = true
-          break
-        }
-      }
-
-
-      if (emailExist === true) {
-        alert("This email address is already in use.")
-        setEnteredEmailAddress('');
-        setEnteredUsername('');
-        setEnteredPassword('');
-        setReenteredPassword('');
-
-      } else if (enteredPassword.length < 8) {
-        alert("Password must have at least 8 characters.")
-        setEnteredPassword('');
-        setReenteredPassword('');
-
-      } else if (enteredPassword !== reenteredPassword) {
-        alert("Both password fields must match.")
-        setEnteredPassword('');
-        setReenteredPassword('');
-
-      } else {
-        props.setUserList(props.userList.concat([newSignUp]))
-        alert("New user successfully created")
-        setEnteredEmailAddress('');
-        setEnteredUsername('');
-        setEnteredPassword('');
-        setReenteredPassword('');
-        navigate("../login")
-      }
+              props.setUserList(props.userList.concat([newUser]))
+              alert("New user successfully created")
+              setEnteredEmailAddress('');
+              setEnteredUsername('');
+              setEnteredPassword('');
+              setReenteredPassword('');
+              navigate("../login")
+          
+        
+  }
+    catch (err) {
+      setLoading(false)
+      err.response.data.msg && setError(err.response.data.msg);
+      console.log(err)
+      alert(error)
+    }
     
     }
       return (

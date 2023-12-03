@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 import Button from './Button';
 import Header from './Header';
@@ -6,22 +6,37 @@ import '../css/ProfilePage.css';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import UserContext from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function ProfilePage (props) {
 
     const [token, setToken] = useState();
 
+    const { setUserData } = useContext(UserContext)
+
     useEffect(() => {
         setToken(localStorage.getItem("auth-token"));
     }, []);
+
+    const navigate = useNavigate()
 
     //Handler for whenever the user decides to logout.
     
     const logOutHandler = (event) => {
         props.setLogged(false);
         props.logOutUser({})
-        setToken()
+        
+        setUserData({
+            token: undefined,
+            user: null
+        });
+
+
+        localStorage.clear();
+        
+        navigate("../login");
     }
     
 

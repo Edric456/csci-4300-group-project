@@ -15,13 +15,21 @@ function History (props) {
         setToken(localStorage.getItem("auth-token"));
     }, []);
 
+    console.log(props.user.workouts)
 
-    var finalWorkouts = <div><Header></Header>{props.listRoutines.map((workout) => 
-        (<Routine id={workout.id} name={workout.title} date={workout.date} excercises={workout.excercises} item={workout} onAddRoutine={props.onAddRoutine} listRoutines={props.listRoutines} editID={props.editID}></Routine>))}
-        <br/>
-        <br/>
-        <center><Link to="../history/create-routine"><Button className="adds">Add Workout</Button></Link></center>
-        </div>
+    var finalWorkouts = <div><Header></Header><br/><br/><center><Link to="../history/create-routine"><Button className="adds">Add Workout</Button></Link></center></div>
+    
+
+    if (props.user) {
+        if (props.user.workouts) {
+            finalWorkouts = <div><Header></Header>{props.user.workouts.map((workout) => 
+                (<Routine id={workout.id} name={workout.title} date={workout.date} excercises={workout.excercises} item={workout} onAddRoutine={props.onAddRoutine} listRoutines={props.user.workouts} editID={props.editID}></Routine>))}
+                <br/>
+                <br/>
+                <center><Link to="../history/create-routine"><Button className="adds">Add Workout</Button></Link></center>
+                </div>
+        }
+    }
 
     if (!token) {
         finalWorkouts = <div><Header></Header><div className="not-logged">Login or register to access workout history.</div>

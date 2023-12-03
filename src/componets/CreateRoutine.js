@@ -16,7 +16,7 @@ function CreateRoutine (props) {
     var finalCreateForm = <div>
     <Header>
     </Header>
-    <AddWorkoutForm onAddRoutine={props.onAddRoutine} excerciseList={props.excerciseList} listRoutines={props.listRoutines}></AddWorkoutForm>
+    <AddWorkoutForm onAddRoutine={props.onAddRoutine} excerciseList={props.excerciseList} listRoutines={props.listRoutines} user={props.user}></AddWorkoutForm>
     </div>
 
     if (!token) {

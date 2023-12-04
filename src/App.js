@@ -188,7 +188,7 @@ function App() {
           <Route exact path='/excercises' element={<ExcerciseList excercises={excerciseData} logged={logged} onAddExcercise={setExcerciseData} editID={setEditExcerciseID}/>} />
           <Route exact path='/login' element={<Login logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines} setLogged={setLogged}/>} />
           <Route exact path='/signup' element={<SignUp logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines} setLogged={setLogged} setUserList={setUsers}/>} />
-          <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excercises} listRoutines={routines} user={userData.user}/>} />
+          <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excerciseData} listRoutines={routines} user={userData.user}/>} />
           <Route exact path='/history/edit-routine' element={<EditRoutine/>} />
           <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcerciseData} logged={logged}/>} />
           <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcerciseData} logged={logged} id={editExcerciseId}/>} />

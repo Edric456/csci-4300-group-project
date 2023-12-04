@@ -4,6 +4,7 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
 
 
 function Excercise (props) {
@@ -25,10 +26,13 @@ function Excercise (props) {
         innerIDHandler();
     }
 
-    const deleteIdHandler = (event) => {
+    const deleteIdHandler = async (event) => {
         function notItem (item) {
             return item !== props.item
         }
+
+        let deleteRoute = "http://localhost:4000/api/excercises/" + String(props.id)
+        await axios.delete(deleteRoute)
         props.onAddExcercise((newList) => newList.filter(notItem))
     }
 

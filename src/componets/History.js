@@ -15,7 +15,7 @@ function History (props) {
         setToken(localStorage.getItem("auth-token"));
     }, []);
 
-    console.log(props.user.workouts)
+    //console.log(props.user.workouts)
 
     var finalWorkouts = <div><Header></Header><br/><br/><center><Link to="../history/create-routine"><Button className="adds">Add Workout</Button></Link></center></div>
     

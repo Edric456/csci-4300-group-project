@@ -24,3 +24,12 @@ label {
   outline: none;
   border-color: #4f005f;
 }
+
+.logup {
+  background-color: blue;
+}
+
+.logup:hover,
+.logup:active {
+  background-color: rgb(100, 100, 255);
+}

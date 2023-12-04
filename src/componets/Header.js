@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Header () {
     return (
         <div className="top-menu">
-            <img src="https://ssb.wiki.gallery/images/7/7f/WiiFitSymbol.svg" alt=""></img>Excercise App
+            <img src="https://ssb.wiki.gallery/images/7/7f/WiiFitSymbol.svg" alt=""></img>Gym Buddy
         <br></br>
         <div className="click-contain"></div>
         <Link to="/">

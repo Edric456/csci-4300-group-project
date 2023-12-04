@@ -108,7 +108,7 @@ const SignUpForm = props => {
               value ={reenteredPassword}
               onChange = {(e)=>{setReenteredPassword(e.target.value)}}
             />
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit" className="signup">Sign Up</Button>
           </form>
         </Card>
       );

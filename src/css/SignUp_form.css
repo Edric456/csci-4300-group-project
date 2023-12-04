@@ -24,3 +24,13 @@ label {
   outline: none;
   border-color: #4f005f;
 }
+
+.signup {
+  background-color: #fac320;
+  margin-right: 30px;   
+}
+
+.signup:hover,
+.signup:active {
+  background-color: #ffdb6e;
+}

@@ -6,6 +6,9 @@ import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import UserContext from '../context/UserContext';
+import { useContext } from 'react';
+import axios from 'axios';
 
 function ExcerciseList (props) {
 
@@ -17,6 +20,13 @@ function ExcerciseList (props) {
 
 
     console.log(props.excercises)
+
+    
+    
+
+
+
+
     var finalExcerciseList = <div>
         <Header></Header>
         <h1>Excercises</h1>

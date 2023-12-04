@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Card from './Card';
 import Button from './Button';
 import '../css/AddExercise_form.css';
+import axios from 'axios';
 
 const AddExerciseForm = props => {
     const[enteredBodyPart,setEnteredBodyPart] = useState('')
@@ -10,11 +11,10 @@ const AddExerciseForm = props => {
     const[enteredExercise,setEnteredExercise] = useState('')
     const[enteredImage,setEnteredImage] = useState('')
     
-    const addUserHandler = event => {
+    const addUserHandler = async event => {
       event.preventDefault();
     
       const newExercise ={
-        id: Math.random(),
         title: enteredExercise,
         bodyPart: enteredBodyPart,
         equipment: enteredEquipment,
@@ -25,9 +25,13 @@ const AddExerciseForm = props => {
       setEnteredExercise('');
       setEnteredImage('');
 
-      const excerciseHandler = (() => {
-        enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ? props.onAddExcercise(newList => newList.concat([newExercise])) 
-        : props.onAddExcercise(newList => newList)
+      const excerciseHandler = (async () => {
+        if(enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0) {
+            await axios.post("http://localhost:4000/api/excercises", newExercise)
+            props.onAddExcercise(newList => newList.concat([newExercise])) 
+        } else {
+          props.onAddExcercise(newList => newList)
+        }
       });
 
       const alertHandler = (() => {

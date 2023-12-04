@@ -131,7 +131,51 @@ function App() {
       checkLoggedIn();
     }, []);
 
+    const [excerciseData, setExcerciseData] = useState([])
 
+    useEffect(()=> {
+      let freshExcerciseData = []
+
+      const getExcerciseData = async () => {
+        
+        
+        let rawExcerciseData = axios.get("http://localhost:4000/api/excercises").
+        then(res => {
+          console.log(res.data)
+          /*
+          const newItem = {
+            id: res.data._id,
+            title: res.data.title,
+            bodyPart: res.data.bodyPart,
+            equipment: res.data.equipment,
+            image: res.data.image
+          };
+          */
+
+          for (var item in res.data) {
+            freshExcerciseData.push(res.data[item])
+          }
+          
+        })
+        
+        
+
+        /*
+        let rawExcerciseData = await axios.get("http://localhost:4000/api/excercises")
+        let tempData = JSON.parse(rawExcerciseData)
+
+        for (var i in tempData) {
+          freshExcerciseData.push(tempData[i])
+        }
+        */
+
+      }
+
+      getExcerciseData();
+
+      setExcerciseData(freshExcerciseData)
+      console.log(excerciseData)
+    }, []) 
 
 
   return (
@@ -141,13 +185,13 @@ function App() {
         <Routes>
           <Route exact path='/' element={<ProfilePage logged={logged} setLogged={setLogged} user={userData.user} logOutUser={setCurrUser}/>} />
           <Route exact path='/history' element={<History user={userData.user} logged={logged} onAddRoutine={setRoutines} editID={setEditRoutineID} />} />
-          <Route exact path='/excercises' element={<ExcerciseList excercises={excercises} logged={logged} onAddExcercise={setExcercises} editID={setEditExcerciseID}/>} />
+          <Route exact path='/excercises' element={<ExcerciseList excercises={excerciseData} logged={logged} onAddExcercise={setExcerciseData} editID={setEditExcerciseID}/>} />
           <Route exact path='/login' element={<Login logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines} setLogged={setLogged}/>} />
           <Route exact path='/signup' element={<SignUp logged={logged} userList={users} user={currUser} setUser={setCurrUser} setRoutines={setRoutines} setLogged={setLogged} setUserList={setUsers}/>} />
           <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excercises} listRoutines={routines} user={userData.user}/>} />
           <Route exact path='/history/edit-routine' element={<EditRoutine/>} />
-          <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcercises} logged={logged}/>} />
-          <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcercises} logged={logged} id={editExcerciseId}/>} />
+          <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcerciseData} logged={logged}/>} />
+          <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcerciseData} logged={logged} id={editExcerciseId}/>} />
         </Routes>
       </div>
     </Router>

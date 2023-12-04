@@ -191,7 +191,7 @@ function App() {
           <Route exact path='/history/create-routine' element={<CreateRoutine onAddRoutine={setRoutines} logged={logged} excerciseList={excerciseData} listRoutines={routines} user={userData.user}/>} />
           <Route exact path='/history/edit-routine' element={<EditRoutine/>} />
           <Route exact path='excercises/create-excercise' element={<CreateExcercise onAddExcercise={setExcerciseData} logged={logged}/>} />
-          <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcerciseData} logged={logged} id={editExcerciseId}/>} />
+          <Route exact path='excercises/edit-excercise' element={<EditExcercise onAddEditExercise={setExcerciseData} logged={logged} id={editExcerciseId} excerciseList={excerciseData}/>} />
         </Routes>
       </div>
     </Router>

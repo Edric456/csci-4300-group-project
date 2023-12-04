@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Card from './Card';
 import Button from './Button';
 import '../css/EditExercise_form.css';
+import axios from 'axios';
 
 const EditExerciseForm = props => {
     const[enteredBodyPart,setEnteredBodyPart] = useState('')
@@ -10,7 +11,7 @@ const EditExerciseForm = props => {
     const[enteredExercise,setEnteredExercise] = useState('')
     const[enteredImage,setEnteredImage] = useState('')
     
-    const addUserHandler = event => {
+    const addUserHandler = async event => {
       event.preventDefault();
     
       const newEditExercise ={
@@ -20,17 +21,21 @@ const EditExerciseForm = props => {
         equipment: enteredEquipment,
         image: enteredImage
       };
-      setEnteredBodyPart('');
-      setEnteredEquipment('');
-      setEnteredExercise('');
-      setEnteredImage('');
+      setEnteredBodyPart("");
+      setEnteredEquipment("");
+      setEnteredExercise("");
+      setEnteredImage("");
 
       
 
-      const excerciseHandler = (() => {
-        enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0 ?
-        props.onAddEditExercise((newList) => newList.map((item) => props.id === item.id ? item = newEditExercise : item = item))
-        : props.onAddEditExercise((newList) => newList)
+      const excerciseHandler = (async () => {
+        if(enteredExercise.length !==0 & enteredBodyPart.length !==0 & enteredEquipment.length !== 0) {
+          let editString = "http://localhost:4000/api/excercises/" + String(props.id)
+          await axios.put(editString, newEditExercise)
+          props.onAddEditExercise((newList) => newList.map((item) => props.id === item._id ? item = newEditExercise : item = item))
+        } else {
+          props.onAddEditExercise((newList) => newList)
+        }
     });
 
     const alertHandler = (() => {
